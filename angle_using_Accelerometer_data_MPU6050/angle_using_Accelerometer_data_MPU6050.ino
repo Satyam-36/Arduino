@@ -165,6 +165,5 @@ void readAccelError()
     angleErrorY=angleErrorY+angleY;
   }
   angleErrorX=angleErrorX/c;
-  angleErrorY=angleErrorY/c;
-  
+  angleErrorY=angleErrorY/c; 
 }
