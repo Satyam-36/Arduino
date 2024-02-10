@@ -1,3 +1,4 @@
+
 float voltage;
 const float dividerValue=5; //reciprocal of voltage divider
 const float maximumVoltageCapicityOfArduinoOut=5;
