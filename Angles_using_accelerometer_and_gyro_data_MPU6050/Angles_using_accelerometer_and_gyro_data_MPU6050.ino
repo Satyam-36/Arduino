@@ -31,15 +31,9 @@ void loop()
     roll-=rollError;
     pitch-=pitchError;
     yaw-=yawError;
-    
-//  Serial.print(" x ");
-//  Serial.print(angleX);
-//  Serial.print(" | ");
-//  Serial.print(" y ");
-//  Serial.println(angleY);
  //Appliying Compelimentey filters on Angles
- roll=0.8*angleX + 0.2*roll;
- pitch=0.8*angleY + 0.2*pitch;
+ roll=0.98*angleX + 0.02*roll;
+ pitch=0.98*angleY + 0.02*pitch;
  
   Serial.print("roll ");
   Serial.print(roll);
