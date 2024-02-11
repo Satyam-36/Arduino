@@ -8,6 +8,7 @@ float angleErrorX=0,angleErrorY=0;
 float roll,pitch,yaw;
 float rollError=0,pitchError=0,yawError=0;
 
+
 void setup()
 {
   Serial.begin(9600);
@@ -37,8 +38,9 @@ void loop()
 //  Serial.print(" y ");
 //  Serial.println(angleY);
  //Appliying Compelimentey filters on Angles
- roll=0.02*angleX + 0.98*roll;
- pitch=0.02*angleY + 0.98*pitch;
+ roll=0.8*angleX + 0.2*roll;
+ pitch=0.8*angleY + 0.2*pitch;
+ 
   Serial.print("roll ");
   Serial.print(roll);
   Serial.print(" | ");
@@ -49,7 +51,7 @@ void loop()
 //  Serial.println(yaw);
 
 
-  delay(100);
+//  delay(100);
 }
 
 void readMPUData(void)
@@ -57,7 +59,7 @@ void readMPUData(void)
   //Activitating Low pass filter
   Wire.beginTransmission(mpu);
   Wire.write(0x1A);
-  Wire.write(0x05);
+  Wire.write(0x04);
   Wire.endTransmission();
 
   //Reading Accelerometer Data
@@ -108,7 +110,7 @@ void readMPUData(void)
     AccZ=-1;
   }
 
- //Calculating angles using Accelerometer data in all 3-axies
+ //Calculating angles using Accelerometer data in all 3-axies and converting radian into angle by multiplying with 57.2958
  angleX=(atan(AccY/sqrt(pow((AccX),2)+pow((AccZ),2))))*57.2958;
  angleY=(atan(AccX/sqrt(pow((AccY),2)+pow((AccZ),2))))*57.2958;
 

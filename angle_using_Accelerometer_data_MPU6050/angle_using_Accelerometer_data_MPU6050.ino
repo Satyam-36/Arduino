@@ -33,17 +33,16 @@ void loop() {
 void readAccel()
 {
   // === Read acceleromter data === //
+ //Activitating Low pass filter
+  Wire.beginTransmission(mpu);
+  Wire.write(0x1A);
+  Wire.write(0x05);
+  Wire.endTransmission();
   // Configure Accelerometer Sensitivity - Full Scale Range (default +/- 2g)
   Wire.beginTransmission(mpu);
   Wire.write(0x1C);                  //Talk to the ACCEL_CONFIG register (1C hex)
   Wire.write(0x10);                  //Set the register bits as 00010000 (+/- 8g full scale range)
   Wire.endTransmission(true);
-  
-  //Activitating Low pass filter
-  Wire.beginTransmission(mpu);
-  Wire.write(0x1A);
-  Wire.write(0x05);
-  Wire.endTransmission();
   //Accessing registers to store accelerometer data     
   Wire.beginTransmission(mpu);
   Wire.write(0x3B);
